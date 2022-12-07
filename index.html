@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Donkey Devine Le Nombre</title>
+  </head>
+  <body>
+    <header>
+      <button class="btn play-again">Rejouer</button>
+    </header>
+    <main>
+      <section class="section top-section">
+        <h1>Devine Le Nombre</h1>
+        <p class="between">(Entre 1 et 20)</p>
+        <p class="message">Commence à deviner...</p>
+        <div class="number">?</div>
+      </section>
+      <section class="section bottom-section">
+        <div class="form">
+          <input type="number" class="guess" />
+          <button class="btn check">Vérfier</button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="scoreboard">
+        <p class="label-score">💯 Score: <span class="score">20</span></p>
+        <p class="label-highscore">
+          🥇 Meilleur score: <span class="highscore">0</span>
+        </p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
