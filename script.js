@@ -22,6 +22,12 @@ function onCheckBtnClick() {
     messageElt.textContent = "Aucun nombre renseigné";
     return;
   }
+
+  const guess = Number(guessStr);
+  if (isNaN(guess)) {
+    messageElt.textContent = "Ceci n'est pas un nombre";
+    return;
+  }
 }
 
 //playErrorAnimation();
