@@ -12,7 +12,7 @@ function revealSecretNumber() {
   numberFlipper.classList.add('reveal');
 }
 
-function onCheckBtnClick() {
-  playErrorAnimation();
-  //revealSecretNumber();
-}
+// mes super animations
+
+//playErrorAnimation();
+//revealSecretNumber();
