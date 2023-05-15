@@ -4,6 +4,13 @@ const numberFlipper = document.querySelector(".flipper");
 const messageElt = document.querySelector(".message");
 const inputElt = document.querySelector(".guess");
 
+// https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+const secretNumber = randomIntFromInterval(1, 20);
+
 function playErrorAnimation() {
   frontElt.classList.add("error-animation");
   setTimeout(() => {
