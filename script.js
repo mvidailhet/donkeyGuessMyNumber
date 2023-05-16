@@ -11,7 +11,9 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 const secretNumber = randomIntFromInterval(1, 20);
-const gameIsFinished = false;
+let gameIsFinished = false;
+
+console.log('secret', secretNumber);
 
 function playErrorAnimation() {
   frontElt.classList.add("error-animation");
@@ -42,6 +44,7 @@ function onCheckBtnClick() {
 
   if (guess === secretNumber) {
     messageElt.textContent = "Tu as gagné !";
+    document.body.classList.add('win-background');
     gameIsFinished = true;
     return;
   } else if (guess < secretNumber) {
@@ -56,6 +59,7 @@ function onCheckBtnClick() {
 
   if (score === 0) {
     messageElt.textContent = "Tu as perdu !";
+    document.body.classList.add('loose-background');
     gameIsFinished = true;
   }
 }
