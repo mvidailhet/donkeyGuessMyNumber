@@ -45,6 +45,7 @@ function onCheckBtnClick() {
   if (guess === secretNumber) {
     messageElt.textContent = "Tu as gagné !";
     document.body.classList.add('win-background');
+    revealSecretNumber();
     gameIsFinished = true;
     return;
   } else if (guess < secretNumber) {
@@ -52,6 +53,7 @@ function onCheckBtnClick() {
   } else {
     messageElt.textContent = "Trop grand !";
   }
+  playErrorAnimation();
 
   let score = Number(scoreElt.textContent);
   score -= 1;
@@ -63,6 +65,3 @@ function onCheckBtnClick() {
     gameIsFinished = true;
   }
 }
-
-//playErrorAnimation();
-//revealSecretNumber();
