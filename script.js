@@ -35,6 +35,14 @@ function onCheckBtnClick() {
     messageElt.textContent = "Ceci n'est pas un nombre";
     return;
   }
+
+  if (guess === secretNumber) {
+    messageElt.textContent = "Tu as gagné !";
+  } else if (guess < secretNumber) {
+    messageElt.textContent = "Trop petit !";
+  } else {
+    messageElt.textContent = "Trop grand !";
+  }
 }
 
 //playErrorAnimation();
