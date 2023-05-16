@@ -10,7 +10,7 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-const secretNumber = randomIntFromInterval(1, 20);
+let secretNumber = randomIntFromInterval(1, 20);
 let gameIsFinished = false;
 
 console.log('secret', secretNumber);
@@ -24,6 +24,10 @@ function playErrorAnimation() {
 
 function revealSecretNumber() {
   numberFlipper.classList.add("reveal");
+}
+
+function hideSecretNumber() {
+  numberFlipper.classList.remove("reveal");
 }
 
 function onCheckBtnClick() {
@@ -64,4 +68,17 @@ function onCheckBtnClick() {
     document.body.classList.add('loose-background');
     gameIsFinished = true;
   }
+}
+
+function resetGame() {
+  hideSecretNumber();
+  messageElt.textContent = "Commence à deviner...";
+  document.body.classList.remove('loose-background');
+  document.body.classList.remove('win-background');
+  secretNumber = randomIntFromInterval(1, 20);
+  gameIsFinished = false;
+  scoreElt.textContent = '20';
+  inputElt.value = '';
+  console.log('secret', secretNumber);
+
 }
