@@ -3,6 +3,7 @@ const numberFlipper = document.querySelector(".flipper");
 
 const messageElt = document.querySelector(".message");
 const inputElt = document.querySelector(".guess");
+const scoreElt = document.querySelector(".score");
 
 // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 function randomIntFromInterval(min, max) { // min and max included 
@@ -10,6 +11,7 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 const secretNumber = randomIntFromInterval(1, 20);
+const gameIsFinished = false;
 
 function playErrorAnimation() {
   frontElt.classList.add("error-animation");
@@ -23,6 +25,8 @@ function revealSecretNumber() {
 }
 
 function onCheckBtnClick() {
+  if (gameIsFinished) return;
+
   const guessStr = inputElt.value;
 
   if (guessStr.trim() === "") {
@@ -38,10 +42,21 @@ function onCheckBtnClick() {
 
   if (guess === secretNumber) {
     messageElt.textContent = "Tu as gagné !";
+    gameIsFinished = true;
+    return;
   } else if (guess < secretNumber) {
     messageElt.textContent = "Trop petit !";
   } else {
     messageElt.textContent = "Trop grand !";
+  }
+
+  let score = Number(scoreElt.textContent);
+  score -= 1;
+  scoreElt.textContent = score;
+
+  if (score === 0) {
+    messageElt.textContent = "Tu as perdu !";
+    gameIsFinished = true;
   }
 }
 
