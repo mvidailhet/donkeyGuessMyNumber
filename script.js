@@ -11,6 +11,8 @@ const numberElt = document.querySelector('.number');
 
 const donkeyAudio = new Audio('assets/donkey.mp3');
 
+let secretNumber;
+
 resetGame();
 
 // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
@@ -18,16 +20,22 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function playErrorAnimation() {
-  donkeyImageElt.classList.add("show");
+function playLostAnimation() {
   numberElt.classList.add("hide");
-  frontElt.classList.add("error-animation");
+  donkeyImageElt.classList.add("show");
   donkeyAudio.play();
+}
+
+function playErrorAnimation() {
+  numberElt.textContent = '😡';
+  frontElt.classList.add("error-animation");
   setTimeout(() => {
     frontElt.classList.remove("error-animation");
-    donkeyImageElt.classList.remove("show");
-    numberElt.classList.remove("hide");
   }, 400);
+
+  setTimeout(() => {
+    numberElt.textContent = '🤫';
+  }, 800);
 }
 
 function revealSecretNumber() {
@@ -82,11 +90,14 @@ function onCheckBtnClick() {
     messageElt.textContent = "Tu as perdu !";
     document.body.classList.add('loose-background');
     gameIsFinished = true;
+    playLostAnimation();
   }
 }
 
 function resetGame() {
   hideSecretNumber();
+  resetNumberCircle();
+  numberElt.textContent = '🤫';
   messageElt.textContent = "Commence à deviner...";
   document.body.classList.remove('loose-background');
   document.body.classList.remove('win-background');
@@ -96,6 +107,11 @@ function resetGame() {
   inputElt.value = '';
   console.log('secret', secretNumber);
   secretNumberElt.textContent = secretNumber;
+}
+
+function resetNumberCircle() {
+  donkeyImageElt.classList.remove("show");
+  numberElt.classList.remove("hide");
 }
 
 

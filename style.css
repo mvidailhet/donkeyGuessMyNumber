@@ -20,7 +20,7 @@ body {
 }
 
 .loose-background {
-  background-color: #980f0f;
+  background-color: #ce1717;
 }
 
 /* LAYOUT */
@@ -109,7 +109,7 @@ h1 {
 
 .donkey-image {
   display: none;
-  height: 100%;
+  height: 70%;
 }
 
 .donkey-image.show {
