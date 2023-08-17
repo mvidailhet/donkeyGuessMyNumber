@@ -9,6 +9,8 @@ const secretNumberElt = document.querySelector('.secret-number');
 const donkeyImageElt = document.querySelector('.donkey-image');
 const numberElt = document.querySelector('.number');
 
+const donkeyAudio = new Audio('assets/donkey.mp3');
+
 resetGame();
 
 // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
@@ -20,6 +22,7 @@ function playErrorAnimation() {
   donkeyImageElt.classList.add("show");
   numberElt.classList.add("hide");
   frontElt.classList.add("error-animation");
+  donkeyAudio.play();
   setTimeout(() => {
     frontElt.classList.remove("error-animation");
     donkeyImageElt.classList.remove("show");
