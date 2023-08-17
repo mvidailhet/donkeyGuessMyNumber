@@ -4,10 +4,32 @@ const numberFlipper = document.querySelector(".flipper");
 const inputELt = document.querySelector(".guess");
 const messageELt = document.querySelector(".message");
 
+const scoreElt = document.querySelector(".score");
+
+const secretNumber = 10;
+
 function onCheckButtonClick() {
   if (inputELt.value === "") {
     messageELt.textContent = "Il faut préciser un nombre !";
+  } else {
+    const guess = Number(inputELt.value);
+
+    if (guess === secretNumber) {
+      messageELt.textContent = '🎉🎉🎉 Bravo !';
+    } else if(guess < secretNumber) {
+      messageELt.textContent = 'Trop petit !';
+      decreaseScore();
+    } else {
+      messageELt.textContent = 'Trop grand !';
+      decreaseScore();
+    }
   }
+}
+
+function decreaseScore() {
+  let score = Number(scoreElt.textContent);
+  score -= 1;
+  scoreElt.textContent = score.toString();
 }
 
 function playErrorAnimation() {
