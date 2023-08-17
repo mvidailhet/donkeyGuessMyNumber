@@ -95,6 +95,19 @@ h1 {
   height: 100%;
 }
 
+.number.hide {
+  display: none;
+}
+
+.donkey-image {
+  display: none;
+  height: 70%;
+}
+
+.donkey-image.show {
+  display: inline-block;
+}
+
 .flipper-side {
   width: 15rem;
   height: 15rem;
