@@ -6,6 +6,8 @@ const inputElt = document.querySelector(".guess");
 const scoreElt = document.querySelector(".score");
 const highscoreElt = document.querySelector('.highscore');
 const secretNumberElt = document.querySelector('.secret-number');
+const donkeyImageElt = document.querySelector('.donkey-image');
+const numberElt = document.querySelector('.number');
 
 resetGame();
 
@@ -15,9 +17,13 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 function playErrorAnimation() {
+  donkeyImageElt.classList.add("show");
+  numberElt.classList.add("hide");
   frontElt.classList.add("error-animation");
   setTimeout(() => {
     frontElt.classList.remove("error-animation");
+    donkeyImageElt.classList.remove("show");
+    numberElt.classList.remove("hide");
   }, 400);
 }
 

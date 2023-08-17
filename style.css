@@ -98,9 +98,22 @@ h1 {
   transform: translate(-50%, 50%);
 }
 
+.number.hide {
+  display: none;
+}
+
 .number-container {
   width: 100%;
   height: 100%;
+}
+
+.donkey-image {
+  display: none;
+  height: 100%;
+}
+
+.donkey-image.show {
+  display: inline-block;
 }
 
 .flipper-side {
