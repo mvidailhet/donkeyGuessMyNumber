@@ -42,16 +42,18 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh;
 }
 
 .top-section {
   border-bottom: 7px solid #4d4d4d;
-  padding-top: 3rem;
+  padding-bottom: 3rem;
+  height: 45vh;
 }
 
 .bottom-section {
   padding-bottom: 5rem;
+  padding-top: 2rem;
+  height: 55vh;
 }
 
 .form {
