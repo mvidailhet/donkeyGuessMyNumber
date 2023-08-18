@@ -16,13 +16,14 @@ const difficultyScreenElt = document.querySelector(".choose-dificulty-screen");
 const difficultyNameElt = document.querySelector(".difficulty-name");
 const maxSecretValueElt = document.querySelector(".max-secret-value");
 
-const donkeyAudio = new Audio("assets/donkey.mp3");
+const donkeyAudio = new Audio("assets/donkey.mp3"); 
 
 let userGuesses = [];
 
 let secretNumber;
 
 let currentMiddleCircleText = "🤫";
+let currentMiddleCircleTextTimeout = null;
 
 let currentDifficulty;
 
@@ -72,11 +73,24 @@ function playLostAnimation() {
   donkeyAudio.play();
 }
 
+function clearMiddleCircleTextTimeout() {
+  clearTimeout(currentMiddleCircleTextTimeout);
+  currentMiddleCircleTextTimeout = null;
+}
+
 function changeMiddleCircleTextForNMilliseconds(text, milliseconds = 800) {
+  if (!!currentMiddleCircleTextTimeout) {
+    clearMiddleCircleTextTimeout();
+    numberElt.textContent = currentMiddleCircleText;
+    return;
+  }
+
   currentMiddleCircleText = numberElt.textContent;
   numberElt.textContent = text;
-  setTimeout(() => {
+
+  currentMiddleCircleTextTimeout = setTimeout(() => {
     numberElt.textContent = currentMiddleCircleText;
+    clearMiddleCircleTextTimeout();
   }, milliseconds);
 }
 
