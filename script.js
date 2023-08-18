@@ -5,6 +5,7 @@ const inputELt = document.querySelector(".guess");
 const messageELt = document.querySelector(".message");
 
 const scoreElt = document.querySelector(".score");
+const highScoreElt = document.querySelector(".highscore");
 
 function randomNumber(min, max) {
  return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -12,6 +13,18 @@ function randomNumber(min, max) {
 
 let secretNumber = randomNumber(1, 20);
 console.log(secretNumber);
+
+function handleHighScore() {
+  const score = Number(scoreElt.textContent);
+  const highscore = Number(highScoreElt.textContent);
+
+  console.log(score);
+  console.log(highscore);
+
+  if (score > highscore) {
+    highScoreElt.textContent = score;
+  }
+}
 
 function onCheckButtonClick() {
 
@@ -34,6 +47,8 @@ function onCheckButtonClick() {
 
       const secretNumberElt = document.querySelector('.secret-number');
       secretNumberElt.textContent = secretNumber;
+
+      handleHighScore();
 
       revealSecretNumber();
     } else if(guess < secretNumber) {
