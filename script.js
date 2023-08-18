@@ -11,6 +11,9 @@ const numberElt = document.querySelector(".number");
 const userGuessesElt = document.querySelector(".user-guesses");
 const userGuessesContainerElt = document.querySelector(".user-guesses-container");
 
+const difficultyNameElt = document.querySelector(".difficulty-name");
+const maxSecretValueElt = document.querySelector(".max-secret-value");
+
 const donkeyAudio = new Audio("assets/donkey.mp3");
 
 let userGuesses = [];
@@ -19,7 +22,22 @@ let secretNumber;
 
 let currentMiddleCircleText = "🤫";
 
+let currentDifficulty;
+
+setDifficulty({
+  name: 'Easy',
+  maxSecret: 10,
+  nbTries: 10
+});
+
 resetGame();
+
+function setDifficulty(difficulty) {
+  currentDifficulty = difficulty;
+  difficultyNameElt.textContent = difficulty.name;
+  maxSecretValueElt.textContent = difficulty.maxSecret;
+  scoreElt.textContent = difficulty.nbTries;
+}
 
 // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 function randomIntFromInterval(min, max) {
@@ -132,19 +150,21 @@ function hideUserGuessesText() {
 }
 
 function resetGame() {
-  hideSecretNumber();
-  hideUserGuessesText();
   resetNumberCircle();
   numberElt.textContent = "🤫";
   messageElt.textContent = "Commence à deviner...";
   document.body.classList.remove("loose-background");
   document.body.classList.remove("win-background");
-  secretNumber = randomIntFromInterval(1, 20);
-  gameIsFinished = false;
-  scoreElt.textContent = "20";
-  inputElt.value = "";
+
+  hideSecretNumber();
+  secretNumber = randomIntFromInterval(1, currentDifficulty.maxSecret);
   console.log("secret", secretNumber);
   secretNumberElt.textContent = secretNumber;
+  
+  gameIsFinished = false;
+  inputElt.value = "";
+
+  hideUserGuessesText();
   userGuesses = [];
 }
 
