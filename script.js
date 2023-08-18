@@ -7,6 +7,8 @@ const messageELt = document.querySelector(".message");
 const scoreElt = document.querySelector(".score");
 const highScoreElt = document.querySelector(".highscore");
 
+let gameIsFinished = false;
+
 function randomNumber(min, max) {
  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -28,6 +30,8 @@ function handleHighScore() {
 
 function onCheckButtonClick() {
 
+  if (gameIsFinished) return;
+
   inputELt.style.width = '50rem';
 
   if (inputELt.value === "") {
@@ -48,6 +52,8 @@ function onCheckButtonClick() {
       const secretNumberElt = document.querySelector('.secret-number');
       secretNumberElt.textContent = secretNumber;
 
+      gameIsFinished = true;
+
       handleHighScore();
 
       revealSecretNumber();
@@ -66,6 +72,8 @@ function onCheckButtonClick() {
       messageELt.textContent = "Tu as perdu !";
       const bodyElt = document.querySelector('body');
       bodyElt.classList.add('lost');
+
+      gameIsFinished = true;
     }
   }
 }
@@ -106,6 +114,8 @@ function resetGame() {
 
   secretNumber = randomNumber(1, 20);
   console.log(secretNumber);
+
+  gameIsFinished = false;
 }
 
 // mes super animations
