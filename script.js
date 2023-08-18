@@ -14,6 +14,10 @@ function onCheckButtonClick() {
   } else {
     const guess = Number(inputELt.value);
 
+    if (isNaN(guess)) {
+      messageELt.textContent = "Ceci n'est pas un nombre !";
+    }
+
     if (guess === secretNumber) {
       messageELt.textContent = '🎉🎉🎉 Bravo !';
     } else if(guess < secretNumber) {
@@ -22,6 +26,11 @@ function onCheckButtonClick() {
     } else {
       messageELt.textContent = 'Trop grand !';
       decreaseScore();
+    }
+
+    let score = Number(scoreElt.textContent);
+    if (score === 0) {
+      messageELt.textContent = "Tu as perdu !";
     }
   }
 }
