@@ -10,7 +10,7 @@ function randomNumber(min, max) {
  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const secretNumber = randomNumber(1, 20);
+let secretNumber = randomNumber(1, 20);
 console.log(secretNumber);
 
 function onCheckButtonClick() {
@@ -29,7 +29,9 @@ function onCheckButtonClick() {
     if (guess === secretNumber) {
       messageELt.textContent = '🎉🎉🎉 Bravo !';
       const bodyElt = document.querySelector('body');
-      bodyElt.style.backgroundColor = 'green';
+
+      bodyElt.classList.add('success');
+
       const secretNumberElt = document.querySelector('.secret-number');
       secretNumberElt.textContent = secretNumber;
 
@@ -46,7 +48,7 @@ function onCheckButtonClick() {
     if (score === 0) {
       messageELt.textContent = "Tu as perdu !";
       const bodyElt = document.querySelector('body');
-      bodyElt.style.backgroundColor = '#da2222';
+      bodyElt.classList.add('lost');
     }
   }
 }
@@ -66,6 +68,27 @@ function playErrorAnimation() {
 
 function revealSecretNumber() {
   numberFlipper.classList.add("reveal");
+}
+
+function hideSecretNumber() {
+  numberFlipper.classList.remove("reveal");
+}
+
+function resetGame() {
+  messageELt.textContent = 'Commence à deviner...';
+  inputELt.style.width = '25rem';
+  inputELt.value = '';
+  scoreElt.textContent = 20;
+
+  const bodyElt = document.querySelector('body');
+
+  bodyElt.classList.remove('lost');
+  bodyElt.classList.remove('success');
+
+  hideSecretNumber();
+
+  secretNumber = randomNumber(1, 20);
+  console.log(secretNumber);
 }
 
 // mes super animations
