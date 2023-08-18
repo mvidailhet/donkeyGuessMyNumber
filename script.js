@@ -8,6 +8,8 @@ const highscoreElt = document.querySelector(".highscore");
 const secretNumberElt = document.querySelector(".secret-number");
 const donkeyImageElt = document.querySelector(".donkey-image");
 const numberElt = document.querySelector(".number");
+const userGuessesElt = document.querySelector(".user-guesses");
+const userGuessesContainerElt = document.querySelector(".user-guesses-container");
 
 const donkeyAudio = new Audio("assets/donkey.mp3");
 
@@ -86,6 +88,8 @@ function onCheckBtnClick() {
 
   userGuesses.push(guess);
 
+  updateUserGuessesText();
+
   let score = Number(scoreElt.textContent);
 
   if (guess === secretNumber) {
@@ -118,8 +122,18 @@ function onCheckBtnClick() {
   }
 }
 
+function updateUserGuessesText() {
+  userGuessesContainerElt.classList.add("show");
+  userGuessesElt.textContent = userGuesses.join(' ');
+}
+
+function hideUserGuessesText() {
+  userGuessesContainerElt.classList.remove("show");
+}
+
 function resetGame() {
   hideSecretNumber();
+  hideUserGuessesText();
   resetNumberCircle();
   numberElt.textContent = "🤫";
   messageElt.textContent = "Commence à deviner...";
