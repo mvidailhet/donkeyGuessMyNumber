@@ -170,6 +170,11 @@ function hideUserGuessesText() {
   userGuessesContainerElt.classList.remove("show");
 }
 
+function resetDifficulty() {
+  currentDifficulty = null;
+  difficultyScreenElt.classList.remove("hide");
+}
+
 function resetGame() {
   resetNumberCircle();
   numberElt.textContent = "🤫";
