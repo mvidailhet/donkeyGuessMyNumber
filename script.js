@@ -62,6 +62,11 @@ function onCheckBtnClick() {
     return;
   }
 
+  if (guess < 1 || guess > 20) {
+    messageElt.textContent = "Ce nombre n'est pas entre 1 et 20";
+    return;
+  }
+
   let score = Number(scoreElt.textContent);
 
   if (guess === secretNumber) {
