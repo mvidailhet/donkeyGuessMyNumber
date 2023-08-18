@@ -11,6 +11,8 @@ const numberElt = document.querySelector(".number");
 const userGuessesElt = document.querySelector(".user-guesses");
 const userGuessesContainerElt = document.querySelector(".user-guesses-container");
 
+
+const difficultyScreenElt = document.querySelector(".choose-dificulty-screen");
 const difficultyNameElt = document.querySelector(".difficulty-name");
 const maxSecretValueElt = document.querySelector(".max-secret-value");
 
@@ -24,19 +26,38 @@ let currentMiddleCircleText = "🤫";
 
 let currentDifficulty;
 
-setDifficulty({
-  name: 'Easy',
-  maxSecret: 10,
-  nbTries: 10
-});
 
-resetGame();
+function chooseEasyDifficulty() {
+  setDifficultyAndStartGame({
+    name: 'Facile',
+    maxSecret: 10,
+    nbTries: 20
+  });
+}
 
-function setDifficulty(difficulty) {
+function chooseMediumDifficulty() {
+  setDifficultyAndStartGame({
+    name: 'Moyen',
+    maxSecret: 20,
+    nbTries: 20
+  });
+}
+
+function chooseHardDifficulty() {
+  setDifficultyAndStartGame({
+    name: 'Difficile',
+    maxSecret: 30,
+    nbTries: 20
+  });
+}
+
+function setDifficultyAndStartGame(difficulty) {
   currentDifficulty = difficulty;
   difficultyNameElt.textContent = difficulty.name;
   maxSecretValueElt.textContent = difficulty.maxSecret;
   scoreElt.textContent = difficulty.nbTries;
+  difficultyScreenElt.classList.add("hide");
+  resetGame();
 }
 
 // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
@@ -92,8 +113,8 @@ function onCheckBtnClick() {
     return;
   }
 
-  if (guess < 1 || guess > 20) {
-    messageElt.textContent = "Ce nombre n'est pas entre 1 et 20";
+  if (guess < 1 || guess > currentDifficulty.maxSecret) {
+    messageElt.textContent = `Ce nombre n'est pas entre 1 et ${currentDifficulty.maxSecret}`;
     changeMiddleCircleTextForNMilliseconds('🤦‍♂️');
     return;
   }

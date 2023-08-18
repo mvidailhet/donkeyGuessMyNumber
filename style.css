@@ -175,6 +175,35 @@ h1 {
   display: block;
 }
 
+.choose-dificulty-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose-dificulty-screen.hide {
+  display: none;
+}
+
+.choose-dificulty-screen-title {
+  margin-bottom: 3rem;
+}
+
+.btn-difficulty {
+  margin-right: 1rem;
+}
+
+.btn-difficulty:last {
+  margin-right: 0;
+}
+
 /* ANIMATIONS */
 .error-animation {
   background-color: #ce0f0f;
