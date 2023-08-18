@@ -38,9 +38,11 @@ function onCheckButtonClick() {
       revealSecretNumber();
     } else if(guess < secretNumber) {
       messageELt.textContent = 'Trop petit !';
+      playErrorAnimation();
       decreaseScore();
     } else {
       messageELt.textContent = 'Trop grand !';
+      playErrorAnimation();
       decreaseScore();
     }
 
