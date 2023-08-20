@@ -41,7 +41,9 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: 4rem;
 }
 
 .section {
@@ -54,13 +56,12 @@ footer {
 
 .top-section {
   border-bottom: 7px solid #4d4d4d;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
   height: 45vh;
 }
 
 .bottom-section {
-  padding-bottom: 5rem;
-  padding-top: 2rem;
+  padding-bottom: 7rem;
   height: 55vh;
 }
 
@@ -71,6 +72,11 @@ footer {
 
 /* ELEMENTS STYLE */
 h1 {
+  font-size: 2.8rem;
+  text-align: center;
+}
+
+h2 {
   font-size: 4rem;
   text-align: center;
 }
@@ -81,7 +87,7 @@ h1 {
 }
 
 .scoreboard {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .message {
@@ -90,8 +96,8 @@ h1 {
 }
 
 .number-centerer {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -117,12 +123,12 @@ h1 {
 }
 
 .flipper-side {
-  width: 15rem;
-  height: 15rem;
+  width: 100%;
+  height: 100%;
   background: #f5f5f5;
   border-radius: 50%;
   border: 7px solid #4d4d4d;
-  font-size: 8rem;
+  font-size: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,9 +144,9 @@ h1 {
   background: none;
   border: 4px solid #4d4d4d;
   color: inherit;
-  font-size: 5rem;
-  padding: 2rem;
-  width: 25rem;
+  font-size: 3rem;
+  padding: 1.5rem;
+  width: 20rem;
   text-align: center;
   display: block;
   margin-bottom: 3rem;
@@ -154,13 +160,103 @@ h1 {
   font-size: 2rem;
   font-family: inherit;
   line-height: 1rem;
-  padding: 2rem 3rem;
+  padding: 1.5rem 1.5rem;
   cursor: pointer;
+  transition: background-color 300ms ease-in-out;
 }
 
 .btn:hover {
   background-color: #dbd9d9;
 }
+
+.user-guesses-container {
+  display: none;
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  font-size: 2rem;
+}
+
+.user-guesses-container.show {
+  display: block;
+}
+
+.choose-dificulty-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose-dificulty-screen.hide {
+  display: none;
+}
+
+.choose-dificulty-screen-title {
+  margin-bottom: 3rem;
+}
+
+.btn-difficulty {
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+}
+
+.btn-difficulty:last {
+  margin-right: 0;
+}
+
+.btn-difficulty:first {
+  margin-left: 0;
+}
+
+
+@media (min-width: 768px) {
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  .btn {
+    padding: 2rem 2rem;
+  }
+
+  .btn-difficulty {
+    margin-right: 3rem;
+    padding: 4rem 6rem;
+  }
+
+  .number-centerer {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .flipper-side {
+    font-size: 8rem;
+  }
+
+  .guess {
+    font-size: 5rem;
+    padding: 2rem;
+    width: 25rem;
+  }
+
+  .bottom-section {
+    padding-bottom: 5rem;
+    padding-top: 2rem;
+  }
+
+  .scoreboard {
+    font-size: 3rem;
+  }
+}
+
+
 
 /* ANIMATIONS */
 .error-animation {
