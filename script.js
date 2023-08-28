@@ -7,6 +7,10 @@ const messageELt = document.querySelector(".message");
 const scoreElt = document.querySelector(".score");
 const highScoreElt = document.querySelector(".highscore");
 
+const secretNumberElt = document.querySelector('.secret-number');
+
+const bodyElt = document.querySelector('body');
+
 let gameIsFinished = false;
 
 function randomNumber(min, max) {
@@ -32,49 +36,45 @@ function onCheckButtonClick() {
 
   if (gameIsFinished) return;
 
-  inputELt.style.width = '50rem';
-
   if (inputELt.value === "") {
     messageELt.textContent = "Il faut préciser un nombre !";
+    return;
+  }
+
+  const guess = Number(inputELt.value);
+
+  if (isNaN(guess)) {
+    messageELt.textContent = "Ceci n'est pas un nombre !";
+    return;
+  }
+
+  if (guess === secretNumber) {
+    messageELt.textContent = '🎉🎉🎉 Bravo !';
+
+    bodyElt.classList.add('success');
+
+    secretNumberElt.textContent = secretNumber;
+
+    gameIsFinished = true;
+
+    handleHighScore();
+    revealSecretNumber();
+  } else if(guess < secretNumber) {
+    messageELt.textContent = 'Trop petit !';
+    playErrorAnimation();
+    decreaseScore();
   } else {
-    const guess = Number(inputELt.value);
+    messageELt.textContent = 'Trop grand !';
+    playErrorAnimation();
+    decreaseScore();
+  }
 
-    if (isNaN(guess)) {
-      messageELt.textContent = "Ceci n'est pas un nombre !";
-    }
+  let score = Number(scoreElt.textContent);
+  if (score === 0) {
+    messageELt.textContent = "Tu as perdu !";
+    bodyElt.classList.add('lost');
 
-    if (guess === secretNumber) {
-      messageELt.textContent = '🎉🎉🎉 Bravo !';
-      const bodyElt = document.querySelector('body');
-
-      bodyElt.classList.add('success');
-
-      const secretNumberElt = document.querySelector('.secret-number');
-      secretNumberElt.textContent = secretNumber;
-
-      gameIsFinished = true;
-
-      handleHighScore();
-
-      revealSecretNumber();
-    } else if(guess < secretNumber) {
-      messageELt.textContent = 'Trop petit !';
-      playErrorAnimation();
-      decreaseScore();
-    } else {
-      messageELt.textContent = 'Trop grand !';
-      playErrorAnimation();
-      decreaseScore();
-    }
-
-    let score = Number(scoreElt.textContent);
-    if (score === 0) {
-      messageELt.textContent = "Tu as perdu !";
-      const bodyElt = document.querySelector('body');
-      bodyElt.classList.add('lost');
-
-      gameIsFinished = true;
-    }
+    gameIsFinished = true;
   }
 }
 
@@ -104,8 +104,6 @@ function resetGame() {
   inputELt.style.width = '25rem';
   inputELt.value = '';
   scoreElt.textContent = 20;
-
-  const bodyElt = document.querySelector('body');
 
   bodyElt.classList.remove('lost');
   bodyElt.classList.remove('success');
