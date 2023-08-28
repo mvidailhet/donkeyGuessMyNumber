@@ -20,16 +20,33 @@ function randomNumber(min, max) {
 let secretNumber = randomNumber(1, 20);
 console.log(secretNumber);
 
-function handleHighScore() {
-  const score = Number(scoreElt.textContent);
+function handlePlayerWon(currentScore) {
+  messageELt.textContent = '🎉🎉🎉 Bravo !';
+  bodyElt.classList.add('success');
+  secretNumberElt.textContent = secretNumber;
+  gameIsFinished = true;
+  handleHighScore(currentScore);
+  revealSecretNumber();
+}
+
+function handleHighScore(currentScore) {
   const highscore = Number(highScoreElt.textContent);
 
-  console.log(score);
-  console.log(highscore);
-
-  if (score > highscore) {
-    highScoreElt.textContent = score;
+  if (currentScore > highscore) {
+    highScoreElt.textContent = currentScore;
   }
+}
+
+function handleWrongNumber(message, currentScore) {
+  messageELt.textContent = message;
+  playErrorAnimation();
+  decreaseScore(currentScore);
+}
+
+function handlePlayerLost() {
+  messageELt.textContent = "Tu as perdu !";
+  bodyElt.classList.add('lost');
+  gameIsFinished = true;
 }
 
 function onCheckButtonClick() {
@@ -48,40 +65,24 @@ function onCheckButtonClick() {
     return;
   }
 
+  const score = Number(scoreElt.textContent);
+
   if (guess === secretNumber) {
-    messageELt.textContent = '🎉🎉🎉 Bravo !';
-
-    bodyElt.classList.add('success');
-
-    secretNumberElt.textContent = secretNumber;
-
-    gameIsFinished = true;
-
-    handleHighScore();
-    revealSecretNumber();
+    handlePlayerWon(score);
   } else if(guess < secretNumber) {
-    messageELt.textContent = 'Trop petit !';
-    playErrorAnimation();
-    decreaseScore();
+    handleWrongNumber('Trop petit !', score);
   } else {
-    messageELt.textContent = 'Trop grand !';
-    playErrorAnimation();
-    decreaseScore();
+    handleWrongNumber('Trop grand !', score);
   }
 
-  let score = Number(scoreElt.textContent);
   if (score === 0) {
-    messageELt.textContent = "Tu as perdu !";
-    bodyElt.classList.add('lost');
-
-    gameIsFinished = true;
+    handlePlayerLost();
   }
 }
 
-function decreaseScore() {
-  let score = Number(scoreElt.textContent);
-  score -= 1;
-  scoreElt.textContent = score.toString();
+function decreaseScore(currentScore) {
+  let newScore = currentScore - 1;
+  scoreElt.textContent = newScore.toString();
 }
 
 function playErrorAnimation() {
