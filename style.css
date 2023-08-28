@@ -121,6 +121,7 @@ h1 {
   text-align: center;
   display: block;
   margin-bottom: 3rem;
+  transition: width 2s ease-in-out;
 }
 
 .btn {
