@@ -1,5 +1,9 @@
 const frontElt = document.querySelector('.front');
 const numberFlipper = document.querySelector('.flipper');
+const donkeyImageElt = document.querySelector('.donkey-image');
+const numberElt = document.querySelector('.number');
+
+const donkeyAudio = new Audio('assets/donkey.mp3');
 
 const bodyElt = document.querySelector('body');
 
@@ -138,6 +142,12 @@ function playErrorAnimation() {
   }, 400);
 }
 
+function playLostAnimation() {
+  numberElt.classList.add("hide");
+  donkeyImageElt.classList.add("show");
+  donkeyAudio.play();
+}
+
 function revealSecretNumber() {
   numberFlipper.classList.add('reveal');
 }
@@ -151,3 +161,4 @@ function hideSecretNumber() {
 
 //playErrorAnimation();
 //revealSecretNumber();
+// playLostAnimation();
