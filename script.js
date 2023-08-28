@@ -4,6 +4,8 @@ const numberFlipper = document.querySelector(".flipper");
 const inputELt = document.querySelector(".guess");
 const messageELt = document.querySelector(".message");
 
+const titleElt = document.querySelector("h1");
+
 const scoreElt = document.querySelector(".score");
 const highScoreElt = document.querySelector(".highscore");
 
@@ -17,11 +19,15 @@ function randomNumber(min, max) {
  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function changeMessage(message) {
+  messageELt.textContent = message;
+}
+
 let secretNumber = randomNumber(1, 20);
 console.log(secretNumber);
 
 function handlePlayerWon(currentScore) {
-  messageELt.textContent = '🎉🎉🎉 Bravo !';
+  changeMessage('🎉🎉🎉 Bravo !');
   bodyElt.classList.add('success');
   secretNumberElt.textContent = secretNumber;
   gameIsFinished = true;
@@ -38,13 +44,13 @@ function handleHighScore(currentScore) {
 }
 
 function handleWrongNumber(message, currentScore) {
-  messageELt.textContent = message;
+  changeMessage(message);
   playErrorAnimation();
   decreaseScore(currentScore);
 }
 
 function handlePlayerLost() {
-  messageELt.textContent = "Tu as perdu !";
+  changeMessage("Tu as perdu !");
   bodyElt.classList.add('lost');
   gameIsFinished = true;
 }
@@ -54,14 +60,14 @@ function onCheckButtonClick() {
   if (gameIsFinished) return;
 
   if (inputELt.value === "") {
-    messageELt.textContent = "Il faut préciser un nombre !";
+    changeMessage("Il faut préciser un nombre !");
     return;
   }
 
   const guess = Number(inputELt.value);
 
   if (isNaN(guess)) {
-    messageELt.textContent = "Ceci n'est pas un nombre !";
+    changeMessage("Ceci n'est pas un nombre !");
     return;
   }
 
@@ -101,7 +107,7 @@ function hideSecretNumber() {
 }
 
 function resetGame() {
-  messageELt.textContent = 'Commence à deviner...';
+  changeMessage('Commence à deviner...');
   inputELt.style.width = '25rem';
   inputELt.value = '';
   scoreElt.textContent = 20;
