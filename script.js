@@ -47,6 +47,32 @@ function getRandomNumber(min, max) {
 function onBtnClick() {
   if (inputElement.value === "") {
     messageElt.textContent = "Il faut préciser un nombre !";
+    return;
+  }
+  const guess = Number(inputElement.value);
+
+  if (isNaN(guess)) {
+    console.log("This is not a number !");
+    return;
+  }
+
+  if (guess < secretNumber) {
+    messageElt.textContent = "Trop petit";
+    return;
+  }
+
+  if (guess > secretNumber) {
+    messageElt.textContent = "Trop grand";
+    return;
+  }
+
+  messageElt.textContent = "gagné";
+
+}
+
+function onBtnClick2() {
+  if (inputElement.value === "") {
+    messageElt.textContent = "Il faut préciser un nombre !";
   } else {
     const guess = Number(inputElement.value);
 
