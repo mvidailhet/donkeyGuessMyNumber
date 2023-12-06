@@ -28,6 +28,7 @@ function revealSecretNumber() {
 //revealSecretNumber();
 // playLostAnimation();
 
-console.log('coucou');
-console.log('coucou');
-console.log('coucou');
+const scoreELt = document.querySelector(".score");
+scoreELt.textContent = '30';
+
+numberElt.textContent = "😂";
