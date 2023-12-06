@@ -29,3 +29,5 @@ function revealSecretNumber() {
 // playLostAnimation();
 
 console.log('coucou');
+console.log('coucou');
+console.log('coucou');
