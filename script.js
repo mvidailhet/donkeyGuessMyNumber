@@ -27,3 +27,5 @@ function revealSecretNumber() {
 //playErrorAnimation();
 //revealSecretNumber();
 // playLostAnimation();
+
+console.log('coucou');
