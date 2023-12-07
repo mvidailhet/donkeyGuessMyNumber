@@ -15,6 +15,14 @@ body {
   /* background-color: #329e11; */
 }
 
+body.success {
+  background-color: #37b06c;
+}
+
+body.lost {
+  background-color: #d72121;
+}
+
 /* LAYOUT */
 header {
   position: absolute;

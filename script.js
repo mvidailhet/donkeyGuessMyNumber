@@ -2,6 +2,7 @@ const frontElt = document.querySelector(".front");
 const numberFlipper = document.querySelector(".flipper");
 const donkeyImageElt = document.querySelector(".donkey-image");
 const numberElt = document.querySelector(".number");
+const bodyElt = document.querySelector("body");
 
 const donkeyAudio = new Audio("assets/donkey.mp3");
 
@@ -74,6 +75,7 @@ function onBtnClick() {
 
     if (currentScore === 0) {
       playLostAnimation();
+      bodyElt.classList.add('lost');
       isGameOver = true;
     }
 
@@ -88,6 +90,7 @@ function onBtnClick() {
 
     if (currentScore === 0) {
       playLostAnimation();
+      bodyElt.classList.add('lost');
       isGameOver = true;
     }
 
@@ -95,6 +98,7 @@ function onBtnClick() {
   }
 
   messageElt.textContent = "gagné";
+  bodyElt.classList.add('success');
 
 }
 
