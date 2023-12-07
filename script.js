@@ -57,15 +57,27 @@ function onBtnClick() {
 
   if (guess < secretNumber) {
     messageElt.textContent = "Trop petit";
+    playErrorAnimation();
     currentScore -= 1;
     scoreELt.textContent = currentScore;
+
+    if (currentScore === 0) {
+      playLostAnimation();
+    }
+
     return;
   }
 
   if (guess > secretNumber) {
     messageElt.textContent = "Trop grand";
+    playErrorAnimation();
     currentScore -= 1;
     scoreELt.textContent = currentScore;
+
+    if (currentScore === 0) {
+      playLostAnimation();
+    }
+
     return;
   }
 
