@@ -3,6 +3,7 @@ const numberFlipper = document.querySelector(".flipper");
 const donkeyImageElt = document.querySelector(".donkey-image");
 const numberElt = document.querySelector(".number");
 const bodyElt = document.querySelector("body");
+const secretNumberElt = document.querySelector(".secret-number");
 
 const donkeyAudio = new Audio("assets/donkey.mp3");
 
@@ -22,14 +23,9 @@ function playLostAnimation() {
 }
 
 function revealSecretNumber() {
+  secretNumberElt.textContent = secretNumber;
   numberFlipper.classList.add("reveal");
 }
-
-// mes super animations
-
-//playErrorAnimation();
-//revealSecretNumber();
-// playLostAnimation();
 
 const scoreELt = document.querySelector(".score");
 
@@ -99,6 +95,7 @@ function onBtnClick() {
 
   messageElt.textContent = "gagné";
   bodyElt.classList.add('success');
+  revealSecretNumber();
 
 }
 
