@@ -29,9 +29,6 @@ function revealSecretNumber() {
 // playLostAnimation();
 
 const scoreELt = document.querySelector(".score");
-scoreELt.textContent = "30";
-
-numberElt.textContent = "😂";
 
 const inputElement = document.querySelector(".guess");
 
@@ -39,6 +36,8 @@ const messageElt = document.querySelector(".message");
 
 const secretNumber = getRandomNumber(1, 20);
 console.log(secretNumber);
+
+let currentScore = 20;
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -58,11 +57,15 @@ function onBtnClick() {
 
   if (guess < secretNumber) {
     messageElt.textContent = "Trop petit";
+    currentScore -= 1;
+    scoreELt.textContent = currentScore;
     return;
   }
 
   if (guess > secretNumber) {
     messageElt.textContent = "Trop grand";
+    currentScore -= 1;
+    scoreELt.textContent = currentScore;
     return;
   }
 
