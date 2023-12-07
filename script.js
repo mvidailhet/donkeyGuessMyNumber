@@ -73,22 +73,3 @@ function onBtnClick() {
 
 }
 
-function onBtnClick2() {
-  if (inputElement.value === "") {
-    messageElt.textContent = "Il faut préciser un nombre !";
-  } else {
-    const guess = Number(inputElement.value);
-
-    if (isNaN(guess)) {
-      console.log("This is not a number !");
-    } else {
-      if (guess < secretNumber) {
-        messageElt.textContent = "Trop petit";
-      } else if (guess > secretNumber) {
-        messageElt.textContent = "Trop grand";
-      } else {
-        messageElt.textContent = "gagné";
-      }
-    }
-  }
-}
