@@ -5,6 +5,8 @@ const numberElt = document.querySelector(".number");
 
 const donkeyAudio = new Audio("assets/donkey.mp3");
 
+let isGameOver = false;
+
 function playErrorAnimation() {
   frontElt.classList.add("error-animation");
   setTimeout(() => {
@@ -44,14 +46,23 @@ function getRandomNumber(min, max) {
 }
 
 function onBtnClick() {
+
+  if (isGameOver) return;
+
   if (inputElement.value === "") {
     messageElt.textContent = "Il faut préciser un nombre !";
     return;
   }
+
   const guess = Number(inputElement.value);
 
   if (isNaN(guess)) {
     console.log("This is not a number !");
+    return;
+  }
+
+  if (guess > 20 || guess < 1) {
+    messageElt.textContent = "Le nombre doit être compris entre 0 et 20";
     return;
   }
 
@@ -63,6 +74,7 @@ function onBtnClick() {
 
     if (currentScore === 0) {
       playLostAnimation();
+      isGameOver = true;
     }
 
     return;
@@ -76,6 +88,7 @@ function onBtnClick() {
 
     if (currentScore === 0) {
       playLostAnimation();
+      isGameOver = true;
     }
 
     return;
