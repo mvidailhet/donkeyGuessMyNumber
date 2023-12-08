@@ -90,17 +90,18 @@ function onBtnClick() {
     return;
   }
 
-  if (guess < secretNumber) {
-    messageElt.textContent = "Trop petit";
+  if (guess !== secretNumber) {
     decrementScoreAndPlayErrorAnimation();
     handleGameIsOver();
+  }
+
+  if (guess < secretNumber) {
+    messageElt.textContent = "Trop petit";
     return;
   }
 
   if (guess > secretNumber) {
     messageElt.textContent = "Trop grand";
-    decrementScoreAndPlayErrorAnimation();
-    handleGameIsOver();
     return;
   }
   
