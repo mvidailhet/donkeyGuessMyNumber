@@ -48,6 +48,14 @@ function decrementScoreAndPlayErrorAnimation() {
   scoreELt.textContent = currentScore;
 }
 
+function handleGameIsOver() {
+  if (currentScore === 0) {
+    playLostAnimation();
+    bodyElt.classList.add('lost');
+    isGameOver = true;
+  }
+}
+
 function onBtnClick() {
   if (isGameOver) return;
 
@@ -70,29 +78,15 @@ function onBtnClick() {
 
   if (guess < secretNumber) {
     messageElt.textContent = "Trop petit";
-
     decrementScoreAndPlayErrorAnimation();
-
-    if (currentScore === 0) {
-      playLostAnimation();
-      bodyElt.classList.add('lost');
-      isGameOver = true;
-    }
-
+    handleGameIsOver();
     return;
   }
 
   if (guess > secretNumber) {
     messageElt.textContent = "Trop grand";
-
     decrementScoreAndPlayErrorAnimation();
-
-    if (currentScore === 0) {
-      playLostAnimation();
-      bodyElt.classList.add('lost');
-      isGameOver = true;
-    }
-
+    handleGameIsOver();
     return;
   }
 
