@@ -4,10 +4,12 @@ const donkeyImageElt = document.querySelector(".donkey-image");
 const numberElt = document.querySelector(".number");
 const bodyElt = document.querySelector("body");
 const secretNumberElt = document.querySelector(".secret-number");
+const highScoreElt = document.querySelector(".highscore");
 
 const donkeyAudio = new Audio("assets/donkey.mp3");
 
 let isGameOver = false;
+let highscore = Number(highScoreElt.textContent);
 
 function playErrorAnimation() {
   frontElt.classList.add("error-animation");
@@ -43,7 +45,6 @@ function getRandomNumber(min, max) {
 }
 
 function onBtnClick() {
-
   if (isGameOver) return;
 
   if (inputElement.value === "") {
@@ -97,10 +98,16 @@ function onBtnClick() {
   bodyElt.classList.add('success');
   revealSecretNumber();
 
+  if (currentScore > highscore) {
+    highScoreElt.textContent = currentScore;
+    highscore = currentScore;
+  }
+
 }
 
-function resetGame() {
+function resetGame() { 
   scoreELt.textContent = '20';
+  currentScore = 20;
   messageElt.textContent = 'Commence à deviner..';
   numberElt.textContent = '🤫';
   secretNumber = getRandomNumber(1, 20);
