@@ -100,19 +100,33 @@ function onBtnClick() {
   }
 }
 
-function resetGame() { 
-  scoreELt.textContent = '20';
-  currentScore = 20;
-  messageElt.textContent = 'Commence à deviner..';
-  numberElt.textContent = '🤫';
-  secretNumber = getRandomNumber(1, 20);
-  console.log(secretNumber);
+function resetBodyStyle() {
   bodyElt.classList.remove('success');
   bodyElt.classList.remove('lost');
-  numberFlipper.classList.remove("reveal");
+}
 
+function resetMiddleCircleElements() {
+  numberFlipper.classList.remove("reveal");
   numberElt.classList.remove("hide");
   donkeyImageElt.classList.remove("show");
+}
+
+function resetScore() {
+  scoreELt.textContent = '20';
+  currentScore = 20;
+}
+
+function resetGame() {
+  resetScore();
+
+  messageElt.textContent = 'Commence à deviner..';
+  numberElt.textContent = '🤫';
+
+  secretNumber = getRandomNumber(1, 20);
+  console.log(secretNumber);
+
+  resetBodyStyle();
+  resetMiddleCircleElements();
 
   inputElement.value = '';
 }
