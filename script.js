@@ -9,7 +9,8 @@ const highScoreElt = document.querySelector(".highscore");
 const donkeyAudio = new Audio("assets/donkey.mp3");
 
 let isGameOver = false;
-let highscore = Number(highScoreElt.textContent);
+let highscore = Number(localStorage.getItem('highScore'));
+highScoreElt.textContent = highscore;
 
 function playErrorAnimation() {
   frontElt.classList.add("error-animation");
@@ -101,6 +102,7 @@ function onBtnClick() {
   if (currentScore > highscore) {
     highScoreElt.textContent = currentScore;
     highscore = currentScore;
+    localStorage.setItem('highScore', highscore);
   }
 
 }
