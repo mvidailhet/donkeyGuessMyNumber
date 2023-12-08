@@ -56,6 +56,12 @@ function handleGameIsOver() {
   }
 }
 
+function handleGameIsWon() {
+  messageElt.textContent = "gagné";
+  bodyElt.classList.add('success');
+  revealSecretNumber();
+}
+
 function onBtnClick() {
   if (isGameOver) return;
 
@@ -90,9 +96,7 @@ function onBtnClick() {
     return;
   }
 
-  messageElt.textContent = "gagné";
-  bodyElt.classList.add('success');
-  revealSecretNumber();
+  handleGameIsWon();
 
   if (currentScore > highscore) {
     highScoreElt.textContent = currentScore;
