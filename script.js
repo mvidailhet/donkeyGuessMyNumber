@@ -5,8 +5,16 @@ const numberElt = document.querySelector(".number");
 const bodyElt = document.querySelector("body");
 const secretNumberElt = document.querySelector(".secret-number");
 const highScoreElt = document.querySelector(".highscore");
+const scoreELt = document.querySelector(".score");
+const inputElement = document.querySelector(".guess");
+const messageElt = document.querySelector(".message");
 
 const donkeyAudio = new Audio("assets/donkey.mp3");
+
+let secretNumber = getRandomNumber(1, 20);
+console.log(secretNumber);
+
+let currentScore = 20;
 
 let isGameOver = false;
 let highscore = Number(localStorage.getItem('highScore'));
@@ -30,19 +38,14 @@ function revealSecretNumber() {
   numberFlipper.classList.add("reveal");
 }
 
-const scoreELt = document.querySelector(".score");
-
-const inputElement = document.querySelector(".guess");
-
-const messageElt = document.querySelector(".message");
-
-let secretNumber = getRandomNumber(1, 20);
-console.log(secretNumber);
-
-let currentScore = 20;
-
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function decrementScoreAndPlayErrorAnimation() {
+  playErrorAnimation();
+  currentScore -= 1;
+  scoreELt.textContent = currentScore;
 }
 
 function onBtnClick() {
@@ -67,9 +70,8 @@ function onBtnClick() {
 
   if (guess < secretNumber) {
     messageElt.textContent = "Trop petit";
-    playErrorAnimation();
-    currentScore -= 1;
-    scoreELt.textContent = currentScore;
+
+    decrementScoreAndPlayErrorAnimation();
 
     if (currentScore === 0) {
       playLostAnimation();
@@ -82,9 +84,8 @@ function onBtnClick() {
 
   if (guess > secretNumber) {
     messageElt.textContent = "Trop grand";
-    playErrorAnimation();
-    currentScore -= 1;
-    scoreELt.textContent = currentScore;
+
+    decrementScoreAndPlayErrorAnimation();
 
     if (currentScore === 0) {
       playLostAnimation();
