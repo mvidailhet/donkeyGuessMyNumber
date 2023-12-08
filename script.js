@@ -90,23 +90,14 @@ function onBtnClick() {
     return;
   }
 
-  if (guess !== secretNumber) {
+  if (guess === secretNumber) {
+    handleGameIsWon();
+    handleHighScore();
+  } else {
     decrementScoreAndPlayErrorAnimation();
     handleGameIsOver();
+    messageElt.textContent = guess < secretNumber ? 'Trop petit' : 'Trop grand';
   }
-
-  if (guess < secretNumber) {
-    messageElt.textContent = "Trop petit";
-    return;
-  }
-
-  if (guess > secretNumber) {
-    messageElt.textContent = "Trop grand";
-    return;
-  }
-  
-  handleGameIsWon();
-  handleHighScore();
 }
 
 function resetGame() { 
