@@ -33,7 +33,7 @@ const inputElement = document.querySelector(".guess");
 
 const messageElt = document.querySelector(".message");
 
-const secretNumber = getRandomNumber(1, 20);
+let secretNumber = getRandomNumber(1, 20);
 console.log(secretNumber);
 
 let currentScore = 20;
@@ -99,3 +99,18 @@ function onBtnClick() {
 
 }
 
+function resetGame() {
+  scoreELt.textContent = '20';
+  messageElt.textContent = 'Commence à deviner..';
+  numberElt.textContent = '🤫';
+  secretNumber = getRandomNumber(1, 20);
+  console.log(secretNumber);
+  bodyElt.classList.remove('success');
+  bodyElt.classList.remove('lost');
+  numberFlipper.classList.remove("reveal");
+
+  numberElt.classList.remove("hide");
+  donkeyImageElt.classList.remove("show");
+
+  inputElement.value = '';
+}
