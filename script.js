@@ -62,6 +62,14 @@ function handleGameIsWon() {
   revealSecretNumber();
 }
 
+function handleHighScore() {
+  if (currentScore > highscore) {
+    highScoreElt.textContent = currentScore;
+    highscore = currentScore;
+    localStorage.setItem('highScore', highscore);
+  }
+}
+
 function onBtnClick() {
   if (isGameOver) return;
 
@@ -95,15 +103,9 @@ function onBtnClick() {
     handleGameIsOver();
     return;
   }
-
+  
   handleGameIsWon();
-
-  if (currentScore > highscore) {
-    highScoreElt.textContent = currentScore;
-    highscore = currentScore;
-    localStorage.setItem('highScore', highscore);
-  }
-
+  handleHighScore();
 }
 
 function resetGame() { 
